@@ -85,23 +85,6 @@ class Employees:
             if employees_manager_id == employee.id:
                 #use this to return the manager name
                 return employee.first_name
-"""     @classmethod
-    def get_subordinates_name(cls, firstname):
-         #loop through list of employee instances
-        for employee in cls.instances_of_class:
-            #if the passed managername = the current employee firstname
-            if firstname == employee.first_name:
-                #capture the managers id from employee object properties
-                managers_id =  employee.id
-            #if you cant find the manager name in this item in the list, dont do anything
-            else:
-                pass
-        #loop again down each employee
-        for employee in cls.instances_of_class:
-            #now that we have the manager id, we can match manager id, to employee id
-            if managers_id == employee.id:
-                #use this to return the manager name
-                return employee.first_name """
 
 
 #user enumerate because we want the index and the value of the list(data) we are iterating over
@@ -128,45 +111,41 @@ print(Employees.instances_of_class)
 print(Employees.company_salary_list)
 
 
-
+#get manager name for employee id 9
 Employees.get_manager_name(9)
 
 
+#define out main function that will execute when the program is run as a script 
 def main():
+    #use f string to print Employees.calculate_total_salary method. This calls the class method which returns the sum of employees salary from the list
     print(f'The total salary for the company is {Employees.calculate_total_salary()}')
+    ##iterate over employee object list
     for employee in Employees.instances_of_class:
+        #print off each employees name, id and their managers name
         print(f'employees first name is {employee.first_name}, employees id is  {employee.id}, and employees manager is  {Employees.get_manager_name(employee.id)}')
+    #create a blank dictionary to store managers, and their employees 
     manager_dictionary = {}
+    #iterate over the list of employees 
     for employee in Employees.instances_of_class:
+        #grab the manager name for each employee by calling class method get_manager_name and passing the current employee id
         manager_name = Employees.get_manager_name(employee.id)
+        #set current employee name to employee first name
         employee_name = employee.first_name
 
+        #check if the current managers name already exists in the dictionary
         if manager_name in manager_dictionary:
+            #if it does, append the employee name to the existing key 
             manager_dictionary[manager_name].append(employee_name)
+            #if not create a new key(manager name) with a new list of values(employee_name)
         else:
             manager_dictionary[manager_name] = [employee_name]
-
-        #try:
-         #   manager_dictionary[manager_name].append(employee_name)
-        #except KeyError:
-         #   print('Someone doesnt have a manager')
-
-
         
-
+        #print off the existing manager dictionary
         print(manager_dictionary)
+        #print off all managers using dictionary.keys
         print(f'all managers in the company are, {manager_dictionary.keys()}')
+        #print off all employees by printing off dictionary.values
         print(f' all employees of the company are {manager_dictionary.values()}')
-        print(manager_dictionary.keys())
-
-
-
-
-
-    
-
-
-    
 
 
 #if the file is run as a script, if __name__ == "__main__": is true and the code under fires
