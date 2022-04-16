@@ -1,6 +1,8 @@
 #importing this from a python file because it is a list of dictionaries. 
 from data import data
 
+
+#######################################PRELIMINARY DATA EXPLORATION######################################################
 #view type of data- it is a list
 type(data)
 
@@ -17,8 +19,11 @@ type(data[0])
 data[0].keys()
 
 #view the values of the dictionary
-
 data[0].values()
+
+
+#############################THIS IS ONE WAY TO SOLVE FOR TOTAL SALARY OF THE INPUT DATA##############################
+#############################IT IS SOLVED IN AN OOP WAY LATER ######################################################
 
 #create empty array to append salary to
 salary_array = []
@@ -31,6 +36,13 @@ for item in data:
 
 #use sum to add all items in the array 
 print(sum(salary_array))
+#########################################################################################################################
+
+
+
+
+
+
 
 
 #create a class for employees in the company 
@@ -86,6 +98,7 @@ class Employees:
                 #use this to return the manager name
                 return employee.first_name
 
+#########################################CREATE INSTANCES OF CLASS EMPLOYEES FROM ABOVE##################################
 
 #user enumerate because we want the index and the value of the list(data) we are iterating over
 for i,v in enumerate(data):
@@ -101,6 +114,9 @@ for i,v in enumerate(data):
     #create a class object by passing the existing first_name, id, and manager to the employees class
     employee = Employees(first_name,id,manager,salary)
     
+###########################################################################################################################
+
+#######################################################TAKE A LOOK AT CLASS VARIABLES/INSTANCES 
 
 #we can print off the number of employees we have based on the class variable
 print(Employees.num_of_emps)
@@ -114,6 +130,8 @@ print(Employees.company_salary_list)
 #get manager name for employee id 9
 Employees.get_manager_name(9)
 
+
+#############################################DEFINE THE MAIN FUNCTION THAT RUNS WHEN APP RUNS IN TERMINAL###############################
 
 #define out main function that will execute when the program is run as a script 
 def main():
@@ -161,6 +179,10 @@ def main():
     print(f'Manager {manager_list[1]} has employees {employee_list[1]}')
     #.sort sorts the list in place, can't really use it in this context. Sort actually returns the new object, so using here.  
     print(f'Manager {manager_list[2]} has employees {sorted(employee_list[2])}')
+
+
+
+######################################################ACTUALLY RUN THE FILE BELOW. ##########################################
 
 
 #if the file is run as a script, if __name__ == "__main__": is true and the code under fires
