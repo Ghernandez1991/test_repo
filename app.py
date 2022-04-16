@@ -124,7 +124,7 @@ def main():
         #print off each employees name, id and their managers name
         print(f'employees first name is {employee.first_name}, employees id is  {employee.id}, and employees manager is  {Employees.get_manager_name(employee.id)}')
     #create a blank dictionary to store managers, and their employees 
-    manager_dictionary = {}
+    org_dictionary = {}
     #iterate over the list of employees 
     for employee in Employees.instances_of_class:
         #grab the manager name for each employee by calling class method get_manager_name and passing the current employee id
@@ -133,19 +133,34 @@ def main():
         employee_name = employee.first_name
 
         #check if the current managers name already exists in the dictionary
-        if manager_name in manager_dictionary:
+        if manager_name in org_dictionary:
             #if it does, append the employee name to the existing key 
-            manager_dictionary[manager_name].append(employee_name)
+            org_dictionary[manager_name].append(employee_name)
             #if not create a new key(manager name) with a new list of values(employee_name)
         else:
-            manager_dictionary[manager_name] = [employee_name]
+            org_dictionary[manager_name] = [employee_name]
         
-        #print off the existing manager dictionary
-        print(manager_dictionary)
-        #print off all managers using dictionary.keys
-        print(f'all managers in the company are, {manager_dictionary.keys()}')
-        #print off all employees by printing off dictionary.values
-        print(f' all employees of the company are {manager_dictionary.values()}')
+    #print off the existing manager dictionary
+    print(org_dictionary)
+
+    #use list comprehensions to create lists of each key in org_dictionary and for the list(of values) associated with those keys 
+    manager_list = [x for x in org_dictionary.keys()]
+    employee_list = [x for x in org_dictionary.values()]
+
+
+    #print off all managers using dictionary.keys
+    print(f'all managers in the company are, {org_dictionary.keys()}')
+    #print off all employees by printing off dictionary.values
+    print(f' all employees of the company are {org_dictionary.values()}')
+
+
+
+
+    #this will print off the manager and his subordinates, although would not work without knowing how many keys we have specifically. Can be improved. 
+    print(f'Manager {manager_list[0]} has employees {employee_list[0]}')
+    print(f'Manager {manager_list[1]} has employees {employee_list[1]}')
+    #.sort sorts the list in place, can't really use it in this context. Sort actually returns the new object, so using here.  
+    print(f'Manager {manager_list[2]} has employees {sorted(employee_list[2])}')
 
 
 #if the file is run as a script, if __name__ == "__main__": is true and the code under fires
